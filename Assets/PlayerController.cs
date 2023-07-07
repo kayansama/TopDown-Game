@@ -6,6 +6,9 @@ public class PlayerController : MonoBehaviour
 {
     public Weapon weapon;
     public float moveSpeed = 5f;
+    public float dashSpeed = 10f;
+    public float dashDuration = 0.2f;
+    private float dashTime = 0f;
     public Rigidbody2D rb;
     Vector2 moveDirection;
     Vector2 mousePosition;
@@ -33,13 +36,25 @@ public class PlayerController : MonoBehaviour
         moveDirection = new Vector2(moveX, moveY).normalized;
         mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            dashTime = dashDuration;
+        }
     }
     private void FixedUpdate()
     {
-        rb.velocity = new Vector2(moveDirection.x * moveSpeed * Time.deltaTime, moveDirection.y * moveSpeed * Time.deltaTime);
-        Vector2 aimDirection = mousePosition - rb.position;
-        float aimAngle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg - 90f;
-        rb.rotation = aimAngle;
+        if (dashTime > 0)
+        {
+            rb.velocity = moveDirection * dashSpeed;
+            dashTime -= Time.deltaTime;
+        }
+        else
+        {
+            rb.velocity = new Vector2(moveDirection.x * moveSpeed * Time.deltaTime, moveDirection.y * moveSpeed * Time.deltaTime);
+            Vector2 aimDirection = mousePosition - rb.position;
+            float aimAngle = Mathf.Atan2(aimDirection.y, aimDirection.x) * Mathf.Rad2Deg - 90f;
+            rb.rotation = aimAngle;
+        }
     }
     public IEnumerator GetAttackCoolDown()
     {

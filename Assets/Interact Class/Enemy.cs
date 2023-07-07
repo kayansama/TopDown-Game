@@ -7,6 +7,8 @@ public class Enemy : InteractionAbstract
 {
     NavMeshAgent agent;
     GameObject playerGameObject;
+    public float rotationSpeed = 100f;
+
     public override void Interact()
     {
         GameManager.Instance.AddScore(1);
@@ -15,7 +17,7 @@ public class Enemy : InteractionAbstract
     private void Start()
     {
         playerGameObject = GameManager.Instance.playerObject;
-        
+
         StartCoroutine(FollowPlayer());
     }
     private IEnumerator FollowPlayer()
@@ -31,8 +33,13 @@ public class Enemy : InteractionAbstract
         agent.updateUpAxis = false;
     }
 
+    private void Update()
+    {
+        transform.Rotate(0, 0, rotationSpeed * Time.deltaTime);
+    }
+
     public override void Interact2()
     {
-        
+
     }
 }

@@ -10,7 +10,7 @@ public abstract class InteractionAbstract : MonoBehaviour
         {
             Interact();
         }
-        if (this.gameObject.CompareTag("Interactable"))
+        if (this.gameObject.CompareTag("Interactable") && collision.gameObject.CompareTag("Bullet") || collision.gameObject.CompareTag("Player") && this.gameObject.CompareTag("Interactable"))
         {
             Interact2();
         }

@@ -10,7 +10,7 @@ public class PowerUp : InteractionAbstract
     {
         GameManager.Instance.ShootingSpeedBoost();
         Destroy(gameObject);
-        //StartCoroutine(BoostShootingSpeed());
+        
     }
     
 

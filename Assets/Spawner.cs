@@ -19,7 +19,7 @@ public class Spawner : MonoBehaviour
         while (canspawn)
         {
             yield return wait;
-            int rand = Random.Range(0, enemyprefabs.Length);
+                int rand = Random.Range(0, enemyprefabs.Length);
             GameObject ENEMYtoSpawn = enemyprefabs[rand];
             Instantiate(ENEMYtoSpawn, transform.position, Quaternion.identity);
         }
