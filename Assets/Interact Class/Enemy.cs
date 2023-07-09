@@ -7,12 +7,16 @@ public class Enemy : InteractionAbstract
 {
     NavMeshAgent agent;
     GameObject playerGameObject;
+    public GameObject explosionParticle;
     public float rotationSpeed = 100f;
 
     public override void Interact()
     {
+         Vector3 Position = transform.position; 
+        explosionParticle.gameObject.SetActive(true);
         GameManager.Instance.AddScore(1);
         GameManager.Instance.HealPlayer(10);
+        Instantiate(explosionParticle, Position, Quaternion.identity);
         Destroy(gameObject);
     }
     private void Start()
