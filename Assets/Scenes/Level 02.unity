@@ -1085,7 +1085,7 @@ MonoBehaviour:
   progressbar: {fileID: 126985223}
   bumpamount: -0.03
   startPanel: {fileID: 0}
-  ExitPanel: {fileID: 0}
+  ExitPanel: {fileID: 2093689414}
   WinPanel: {fileID: 0}
   LosePanel: {fileID: 0}
   Exit: {fileID: 641042043}
@@ -4016,7 +4016,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2093689415
 RectTransform:
   m_ObjectHideFlags: 0

@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -18,6 +20,8 @@ public class GameManager : MonoBehaviour
     public GameObject WinPanel;
     public GameObject LosePanel;
     public GameObject Exit;
+    public string loseScene;
+    public Health health;
     void Start()
     {
         Score = 0;
@@ -39,6 +43,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        health = playerObject.GetComponent<Health>();
     }
     public void AddScore(int score)
     {
@@ -86,5 +91,26 @@ public class GameManager : MonoBehaviour
         //activate panel
         Exit.gameObject.SetActive(true);
     }
+    public void LostGame()
+    {
 
+        LosePanel.gameObject.SetActive(true);
+        Debug.Log(Time.timeScale);
+        Time.timeScale = .1f;
+    }
+    private IEnumerator LostGameCoroutine()
+    {
+        yield return new WaitForSeconds(2f);
+    }
+    public void LoadScene(string SceneToLoad)
+    {
+        Time.timeScale= 1f;
+        Destroy(Instance.gameObject);
+        SceneManager.LoadScene(SceneToLoad);
+
+    }
+    public void HealPlayer(float playerHealing)
+    {
+        health.IncreaseHP(playerHealing);
+    }
 }

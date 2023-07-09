@@ -12,6 +12,7 @@ public class Enemy : InteractionAbstract
     public override void Interact()
     {
         GameManager.Instance.AddScore(1);
+        GameManager.Instance.HealPlayer(10);
         Destroy(gameObject);
     }
     private void Start()

@@ -17,6 +17,7 @@ public class Enemy02 : InteractionAbstract
         if (hp <= 0)
         {
             GameManager.Instance.AddScore(1);
+            GameManager.Instance.HealPlayer(10);
             Destroy(gameObject); 
         }
         if (hp > 1)
